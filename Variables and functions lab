@@ -15,9 +15,10 @@ print(str)
 Tip calculator:
 cost = input("How much was the meal? ")
 percent = input("What percentage would you like to tip? ")
-print(percent)
-print(cost)
+cost = cost.replace("$", "")
+percent = percent.replace("%", "")
 cost = float(cost)
 percent = float(percent)
 percent = percent / 100
 print("Leave $", cost * percent)
+
