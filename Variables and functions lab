@@ -3,9 +3,12 @@ str = input("What would you like to say? ")
 print(str.lower())
 
 Weight on mars:
-weight = input("Enter your weight on earth: ")
+def calculate_mars_weight(weight):
+	return weight * 0.378
+weight = input("Enter your weight on Earth: ")
 weight = float(weight)
-print("Weight on Mars: ", weight * 0.378)
+print("Mars weight: ", calculate_mars_weight(weight))
+
 
 Playback speed:
 str = input("What would you like to say? ")
@@ -13,12 +16,21 @@ str = str.replace(" ", "...")
 print(str)
 
 Tip calculator:
-cost = input("How much was the meal? ")
-percent = input("What percentage would you like to tip? ")
-cost = cost.replace("$", "")
-percent = percent.replace("%", "")
-cost = float(cost)
-percent = float(percent)
-percent = percent / 100
-print("Leave $", cost * percent)
+def main():
+	cost = input("How much was the meal? ")
+	percent = input("What percentage would you like to tip? ")
+	cost = dollars_to_float(cost)
+	percent = percent_to_float(percent)
+	percent = percent / 100
+	print("Leave $", cost * percent)
+def dollars_to_float(d):
+	d = d.replace("$", "")
+	d = float(d)
+	return d
+def percent_to_float(p):
+	p = p.replace("%", "")
+	p = float(p)
+	return p
+main()
+
 
