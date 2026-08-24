@@ -1,0 +1,23 @@
+Indoor voice:
+str = input("What would you like to say? ")
+print(str.lower())
+
+Weight on mars:
+weight = input("Enter your weight on earth: ")
+weight = float(weight)
+print("Weight on Mars: ", weight * 0.378)
+
+Playback speed:
+str = input("What would you like to say? ")
+str = str.replace(" ", "...")
+print(str)
+
+Tip calculator:
+cost = input("How much was the meal? ")
+percent = input("What percentage would you like to tip? ")
+print(percent)
+print(cost)
+cost = float(cost)
+percent = float(percent)
+percent = percent / 100
+print("Leave $", cost * percent)
