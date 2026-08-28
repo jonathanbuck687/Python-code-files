@@ -1,0 +1,89 @@
+Math Interpreter:
+equation = input("Input: ")
+num1, sign, num2 = equation.split(" ")
+num1 = float(num1)
+num2 = float(num2)
+if (sign == "-"):
+    print(num1 - num2)
+elif (sign == "+"):
+    print(num1 + num2)
+elif (sign == "*"):
+    print(num1 * num2)
+elif (sign == "/"):
+    if (num2 != 0):
+        print(num1 / num2)
+    else:
+        print("invalid input")
+else:
+    print("invalid input")
+
+Leap year:
+year = input("Year: ")
+bean = False
+try:
+        year = int(year)
+        bean = True
+except(ValueError, TypeError):
+        bean = False
+if bean:
+        year = int(year)
+        if year % 4 == 0:
+                if (year % 100 == 0) & (year % 400 != 0):
+                        print("Not a Leap Year")
+                else:
+                        print("Leap Year")
+        else:
+                print("Not a Leap Year")
+else:
+        print("Not a Leap Year")
+
+Meal time:
+def main():
+    time = input("What time is it? ")
+    time = convert(time)
+    if (time > 7.0) & (time < 8.0):
+        return "breakfast time"
+    elif (time > 12.0) & (time < 13.0):
+        return "lunch time"
+    elif (time > 18.0) & (time < 19.0):
+        return "dinner time"
+def convert(time):
+    h,m = time.split(":")
+    h = int(h)
+    m = int(m)
+    #1.6667 is 100 divided by 60
+    m = m * 1.6667
+    m = float(m/100)
+    h = float(h + m)
+    return h
+print(main())
+
+Sweater weather:
+temp = input("What is the high temperature: ")
+bean = False
+try:
+        temp = int(temp)
+        bean = True
+except(ValueError, TypeError):
+        bean = False
+if bean:
+    temp = int(temp)
+    if temp < 60:
+        print("you need to bring a sweater")    
+    elif (temp > 60) & (temp < 140):
+        print("you do not need to bring a sweater")
+    else:
+        print("invalid input")
+else:
+    print("invalid input")
+
+The answer to life, the universe, and everything:
+answer = input("What is the answer to life, the universe, and everything? ")
+if answer == "42":
+        print("Yes")
+elif  answer.lower() == "fourty two":
+        print("Yes")
+elif answer.lower() == "fourty-two":
+        print("Yes")
+else:
+        print("No")
