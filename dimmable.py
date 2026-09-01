@@ -1,3 +1,4 @@
+# Dim the LED lab
 from gpiozero import PWMLED
 from time import sleep
 from gpiozero import RotaryEncoder
