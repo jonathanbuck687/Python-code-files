@@ -1,0 +1,125 @@
+Classified:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+target_words = ["james", "london", "mi6", "classified", "paris", "midnight", "nuclear", "asset"]
+text = input("Classifier: ")
+text = text.lower()
+for i in target_words:
+    if i in text:
+        index = text.find(i)
+        text = text[:index] + "[REDACTED]" + text[index + len(i):]
+print(text[0:1].upper() + text[1:])
+
+Coke Machine:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+amount = 50
+print("Amount due: ", amount)
+bean = True
+while(bean):
+    coin = input("Coin: ")
+    coin = int(coin)
+    if (amount - coin <= 0):
+        bean = False
+        print("Change owed: ", (coin - amount))
+    else:
+        amount = amount - coin
+        print("Amount: ", amount)
+
+Music Festival:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+artist = input("Enter a musician: ")
+votes = {artist.lower(): 1}
+bean = False
+while(not artist == "done"):
+    artist = input("Enter a musician: ")
+    if artist == "done":
+        break
+    for i in votes:
+        if i == artist.lower():
+            bean = True
+    if (bean):
+        votes[artist.lower()] = votes[artist.lower()] + 1
+    else:
+        votes.update({artist.lower(): 1})
+    bean = False
+print("\nVotes\n-------------")
+for j in votes:
+    print(j.lower().title(),":", votes[j])
+
+Nutrition:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+fruits = {
+        "apple": "130",
+        "avocado": "50",
+        "banana": "110",
+        "cantaloupe": "50",
+        "grapefruit": "60",
+        "grapes": "90",
+        "honeydew melon": "50",
+        "kiwifruit": "90",
+        "lemon": "15",
+        "lime": "20",
+        "nectarine": "60",
+        "orange": "80",
+        "peach": "60",
+        "pear": "100",
+        "pineapple": "50",
+        "plums": "70",
+        "strawberries": "50",
+        "sweet cherries": "100",
+        "tangerine": "50",
+        "watermelon": "80",
+}
+fruit = input("Enter a fruit: ")
+bean = False
+for i in fruits:
+    if i == fruit.lower():
+        print(fruits[fruit])
+        bean = True
+if (not bean):
+    print("fruit not found")
+
+Plate Validator:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def is_valid(plateNum):
+    abc = "qwertyuioplkjhgfdsazxcvbnm"
+    nums = "1234567890"
+
+    if (len(plateNum) < 2 or len(plateNum) > 6):
+        return("Invalid")
+    
+    i = 0
+    while (i <= len(plateNum) - 1):
+        if (not(plateNum[i:i+1] in abc) and not(plateNum[i+1:i+2] in nums)):
+            return("Invalid")
+        i = i + 1
+
+    if (not(plateNum[:1] in abc) and not(plateNum[1:2] in abc)):
+        return("Invalid")
+    
+    j = 0
+    barn = True
+    while (j <= len(plateNum) - 1 and barn):
+        if ((plateNum[j:j+1] in nums)):
+            if ((plateNum[j:j+1] == "0")):
+                return("Invalid")
+            else:
+                barn = False
+        j = j + 1
+    
+    k = 0
+    while (k <= len(plateNum) - 2):
+        if ((plateNum[k:k+1] in nums)):
+            if ((plateNum[k+1:k+2] in abc)):
+                return("Invalid")
+        k = k + 1
+    return "Valid"
+
+def main():
+    done = False
+    while(not done):
+        plateNum = input("Validate: ")
+        plateNum = plateNum.lower()
+        print(is_valid(plateNum))
+        if (is_valid(plateNum) == "Valid"):
+            done = True
+main()
