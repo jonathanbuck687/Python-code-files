@@ -1,0 +1,106 @@
+-------------------
+Collatz conjecture
+-------------------
+def collatz(num, count):
+    print(num)
+    if num == 1:
+        return count
+    elif num % 2 == 0:
+        return collatz(num / 2, count + 1)
+    elif num % 2 != 0:
+        return collatz((num * 3) + 1, count + 1)
+
+def main():
+    num = input("What is the starting number? ")
+    num = float(num)
+    print("It runs ", collatz(num, 0)," times")
+
+main()
+
+
+-------------------
+Fractal
+-------------------
+def draw_pattern(num):
+    if (num == 1):
+        print("*")
+        return("")
+    stri = ""
+    for i in range(num):
+        stri += "*"
+    print(stri)
+    draw_pattern(num - 1)
+    stri = ""
+    for i in range(num):
+        stri += "*"
+    print(stri)
+
+
+
+def main():
+    draw_pattern(3)
+
+if __name__ == '__main__':
+    main()
+
+
+-------------------
+Matryoshka dolls
+-------------------
+import unittest
+def open_doll(doll):
+    if (doll["inner_doll"] == "None"):
+        return doll["size"]
+    return open_doll(doll["inner_doll"])
+
+class TestStringMethods(unittest.TestCase):
+    def testAdd(self):
+        self.assertEqual(open_doll({
+        "size": 5, 
+        "inner_doll": "None"}), 5)
+        self.assertEqual(open_doll({
+        "size": 12, 
+        "inner_doll": {
+            "size": 7, 
+            "inner_doll": "None"
+        }}), 7)
+        self.assertEqual(open_doll({
+        "size": 20, 
+        "inner_doll": {
+            "size": 15, 
+            "inner_doll": {
+                "size": 10, 
+                "inner_doll": {
+                    "size": 3, 
+                    "inner_doll": "None"
+                }
+            }
+        }}), 3)
+
+if __name__ == '__main__':
+    unittest.main()
+
+-------------------
+Palindrome
+-------------------
+def is_palindrome(text):
+    text = text.lower()
+    j = 0
+    newerText = ""
+    while j < len(text):
+        if (not(text[j: j + 1] == "." or text[j : j + 1] == "," or text[j: j + 1] == "?" or text[j: j + 1] == "!" or  text[j: j + 1] == ":" or  text[j: j + 1] == " ")):
+            newerText = (newerText + text[j: j + 1])
+        j += 1
+    text = newerText
+    if (len(text) == 1 or len(text) == 0):
+         return True
+    elif not(text[0:1] == text[len(text) - 1:]):
+        return False
+    return is_palindrome(text[1:len(text) - 1])
+
+def main():
+    pali = input("Enter a word: ")
+    print(is_palindrome(pali))
+
+if __name__ == '__main__':
+    main()
