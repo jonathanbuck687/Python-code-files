@@ -1,0 +1,197 @@
+------------------
+Barista
+------------------
+from typing import List
+class MenuItem:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Order:
+    def __init__(self, receipt: List[MenuItem]):
+        self.receipt = receipt
+    def add_item(self, item):
+        self.receipt.append(item)
+    def calculate_taxes(self):
+        sum = 0
+        for i in self.receipt:
+            sum = sum + (i.price * .07)
+        return sum
+    def calculate_total(self):
+            sum = 0
+            for i in self.receipt:
+                sum = sum + (i.price * 1.07)
+            return sum
+    def print_receipt(self):
+        print("CROSSROAD'S_CAFE\n----------------")
+        for i in self.receipt:
+            print(i.name.strip(" "), ": ", i.price)
+        print("----------------\ntaxes: ", self.calculate_taxes(), "\n----------------\nTotal: ", self.calculate_total())
+
+def main():
+   
+   menu = [
+       MenuItem("bagel", 3.00),
+       MenuItem("burrito", 5.00),
+       MenuItem("ramen", 1.50),
+       MenuItem("gum", 0.50)
+   ]
+     
+   order1 = Order([])
+   order1.add_item(menu[1])
+   order1.add_item(menu[1])
+   order1.add_item(menu[3])
+
+   total = order1.calculate_total()
+   print("The total due is " + str(total))
+
+   order1.print_receipt()
+   
+
+if __name__ == '__main__':
+        main()
+
+------------------
+Libary
+------------------
+class Book:
+    def __init__(self, title, date, checked_out):
+         self.title = title
+         self.date = date
+         self.checked_out = checked_out
+    def check_out(self):
+        if (not self.checked_out):
+            self.checked_out = True
+            return True
+        return False
+
+
+
+def main():
+     
+    book1 = Book("To Kill a Mockingbird", "Harper Lee", False)
+    book2 = Book("1984", "George Orwell", False)
+    book3 = Book("Slaughterhouse 5", "Kurt Vonnegut", False)
+    
+    # Create a list of book objects
+    shelf = [book1, book2, book3]
+
+    # Try to check out book2 on the shelf and print if it has been checked out
+    if shelf[1].check_out() == True:
+        print(shelf[1].title + " has been checked out")
+
+    # Total the number of available books
+    total = 0
+    for book in shelf:
+        if book.checked_out == False:
+            total += 1
+    print("There are " + str(total) + " available books")
+
+
+if __name__ == '__main__':
+        main()
+
+------------------
+Parking Lot
+------------------
+class Car:
+    def __init__(self, make, model, mpg):
+        self.make = make
+        self.model = model
+        self.mpg = mpg
+
+def main():
+    car1 = Car("Toyota", "Prius", 35)
+    car2 = Car("Subaru","Outback", 32)
+    car3 = Car("Ford", "F150", 25)
+
+    parking_lot = [car1, car2, car3]
+
+    ## Write a program to sum the mpg of each car.
+    sum = 0
+    for i in parking_lot:
+      sum = sum + i.mpg
+    print(sum)
+if __name__ == '__main__':
+        main()
+from pathlib import Path
+from typing import List
+
+------------------
+Playlisr
+------------------
+class Song:
+    def __init__(self, title: str, artist: str, duration: int):
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
+class Playlist:
+    def __init__(self, name: str, songList: List[Song]):
+        self.name = name
+        self.songList = songList
+    def add_song(self, song: Song):
+        self.songList.append(song)
+    def get_total_duration(self):
+        total = 0
+        for i in self.songList:
+            total += i.duration
+        print(total)
+    def find_by_artist(self, artist: str):
+        yesList = []
+        for i in self.songList:
+            if i.artist == artist:
+                yesList.append(i)
+        print("SONGS BY ", artist.upper(), "\n-----------------------")
+        for i in yesList:
+            print(i.title, ",", i.artist)
+    def print_playlist(self):
+        print(self.name.upper(), "\n-----------------------")
+        for i in self.songList:
+            print(i.title, ",", i.artist)
+    def load_songs(self, filename: str):
+        path = Path(filename)
+        if not path.exists():
+            path = Path(__file__).parent / filename
+
+        with path.open("r") as file:
+            songlist = [line.strip().split(",") for line in file.readlines()]
+            for i in songlist:
+                self.songList.append(Song(i[0], i[1], int(i[2])))
+
+def main():
+    songList = []
+    playlist = Playlist("My Playlist", songList)
+    playlist.load_songs("songs.csv")
+    playlist.add_song(Song("My Fav Song", "Megabytes", 250))
+    playlist.print_playlist()
+    playlist.get_total_duration()
+    playlist.find_by_artist("Null Pointer")
+
+
+if __name__ == '__main__':
+        main()
+
+------------------
+Songs.csv
+------------------
+Hello World,The Synthesizers,180
+Stack Overflow,Null Pointer,210
+Off By One,Array Index,195
+Infinite Loop,The Debuggers,240
+Garbage Collection,Null Pointer,165
+Runtime Error,Byte Code,188
+Syntax Sugar,The Synthesizers,205
+Segmentation Fault,Null Pointer,300
+Merge Conflict,The Debuggers,150
+Push to Master,Array Index,220
+Blue Screen,Byte Code,190
+Cache Miss,The Synthesizers,215
+Brute Force,The Debuggers,140
+Rubber Ducking,Array Index,175
+Memory Leak,Null Pointer,260
+Boolean Logic,Byte Code,180
+Time Complexity,The Synthesizers,230
+Kernel Panic,Null Pointer,270
+Refactoring,Array Index,190
+Git Commit,The Debuggers,160
